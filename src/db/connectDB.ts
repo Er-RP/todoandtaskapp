@@ -1,7 +1,7 @@
 import mongoose from "mongoose"
 
 
-const MongoDb = "mongodb+srv://rajapandi12121997:rp12121997@todoapp.usb49qn.mongodb.net/todoapp"
+const MongoDb = process.env.NEXT_PUBLIC_MONGO_URI as string
 export const connectDb = async () => {
   try {
     await mongoose.connect(MongoDb)
