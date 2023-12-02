@@ -1,7 +1,31 @@
 'use client';
+import { client } from '@/apollo/client';
 import { changeMode, changeTheme } from '@/utils/helper'
+import gql from 'graphql-tag';
 
 export default function Home() {
+
+client
+.query({
+  query: gql`
+    query Users {
+    users {
+        success
+        total
+        users {
+            id
+            username
+            email
+            role
+            createdAt
+            updatedAt
+        }
+    }
+}
+
+  `,
+})
+.then((result) => console.log("RP gql,",result)).catch((error)=> console.log("RP error,",error))
   return (
     <main className="min-h-screen p-4 bg-secondary text-typography transition-colors ease-in-out duration-1000">
       {/* <div className='h-screen grid place-items-center'> */}
