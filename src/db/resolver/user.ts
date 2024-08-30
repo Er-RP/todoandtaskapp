@@ -7,13 +7,14 @@ export const UsersResolver = {
         users: async () => {
             try {
                 const users = await User.find({});
-                if (!users) throw new Error('No users found');
+                // if (!users) throw new Error('No users found');
                 return {
                     success: true,
                     total: users?.length,
                     users
                 };
             } catch (error) {
+                console.log("NO USERS ERROR")
                 throw error;
             }
         },    

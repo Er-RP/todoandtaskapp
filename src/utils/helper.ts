@@ -2,14 +2,18 @@ import { DARK_MODE, THEME_MODE_HTML_ATTRIBUTE } from "./constant";
 
 export const changeTheme = (theme: string) => {
     document.querySelector("html")?.setAttribute("data-theme", theme);
+    localStorage.setItem("app_theme",theme)
   };
 export const changeMode = () => {
     const htmlNode: HTMLHtmlElement | null = document.querySelector("html")
     if(htmlNode?.getAttribute(THEME_MODE_HTML_ATTRIBUTE) === DARK_MODE){
         htmlNode.removeAttribute(THEME_MODE_HTML_ATTRIBUTE)
+    localStorage.removeItem("app_mode")
     }
     else{
-        htmlNode?.setAttribute(THEME_MODE_HTML_ATTRIBUTE,DARK_MODE)
+    htmlNode?.setAttribute(THEME_MODE_HTML_ATTRIBUTE,DARK_MODE)
+    localStorage.setItem("app_mode",DARK_MODE)
+
     }
 }
 

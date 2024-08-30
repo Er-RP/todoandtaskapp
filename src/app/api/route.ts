@@ -15,7 +15,7 @@ import http from 'http';
 import cors from 'cors';
 
 interface MyContext {
-  token?: String;
+  token?: string;
 }
 const app = express();
 const httpServer = http.createServer(app);
@@ -26,7 +26,7 @@ const server = new ApolloServer<MyContext>({
   plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
 });
 connectDb().then(async ()=>await server.start())
-.then(async () => await app.use(
+.then(async () =>  app.use(
   '/api',
   cors<cors.CorsRequest>(),
   express.json(),
@@ -36,3 +36,5 @@ connectDb().then(async ()=>await server.start())
 )).then(async()=> await new Promise<void>((resolve) => httpServer.listen({ port: 4000 }, resolve)))
 .then((res) => console.log(`🚀 Server ready at http://localhost:4000/api`,res))
 .catch((error)=>console.log("RP error:",error))
+
+export { server as GET, server as POST };

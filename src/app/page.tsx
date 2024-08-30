@@ -1,7 +1,24 @@
 'use client';
+import { DARK_MODE, THEME_MODE_HTML_ATTRIBUTE } from '@/utils/constant';
 import { changeMode, changeTheme } from '@/utils/helper'
+import { useEffect } from 'react';
 
 export default function Home() {
+  useEffect(()=>{
+    const htmlNode: HTMLHtmlElement | null = document?.querySelector("html")
+    
+    const theme = localStorage.getItem("app_theme")
+    const mode = localStorage.getItem("app_mode")
+
+    if(htmlNode){
+      if(theme){
+htmlNode?.setAttribute("data-theme", theme)
+      }
+      if(mode === DARK_MODE){
+        htmlNode?.setAttribute(THEME_MODE_HTML_ATTRIBUTE,DARK_MODE)
+      }
+    }
+  },[])
   return (
     <main className="min-h-screen p-4 bg-secondary text-typography transition-colors ease-in-out duration-1000">
       {/* <div className='h-screen grid place-items-center'> */}
